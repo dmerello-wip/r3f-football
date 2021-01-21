@@ -19,15 +19,18 @@ export default function Stage() {
 
   const bind = useDrag((state) => {
     if(isDraggingBall) {
-      console.log(`state.velocity: ${state.velocity}`);
-      console.log(`state.dragging: ${state.dragging}`);
       if(!state.dragging) {
-        console.log('end dragging');
+        console.log(`state.velocity: ${state.velocity}`);
+        console.log(`state.vxvy: ${state.vxvy}`);
+        console.log(`state.distance: ${state.distance}`);
+        console.log(`state.direction: ${state.direction}`);
+        console.log(`state.xy: ${state.xy}`);
+        console.log(`state.event: ${state.event}`);
         setIsDraggingBall(false);
       }
     }
   }, {
-    threshold: 150,
+    threshold: 10,
     useTouch: true
   });
 

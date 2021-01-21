@@ -7,16 +7,6 @@ const Ball = ({size, position}) => {
 
   const {setIsDraggingBall} = useBallsStore();
 
-  const handlePointerDown = (e) => {
-    setIsDraggingBall(true);
-  };
-  //
-  // const handlePointerUp = (e) => {
-  //   console.log("up");
-  //   setIsDraggingBall(false);
-  //   console.log(isDraggingBall);
-  // };
-
   const [sphereRef, api] = useSphere(() => ({
     mass: 1,
     position: position,
@@ -29,9 +19,9 @@ const Ball = ({size, position}) => {
   }, [hovered]);
 
 
-  const hitHandler = ()=>{
-    api.velocity.set(0, 6, -20);
-  };
+  // const hitHandler = ()=>{
+  //   api.velocity.set(0, 6, -20);
+  // };
 
   return (
     <group position={[0, 0, 0]}>
@@ -40,9 +30,8 @@ const Ball = ({size, position}) => {
         castShadow
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
-        onPointerDown={e => { handlePointerDown(e) }}
-        // onPointerUp={e => { handlePointerUp(e) }}
-        onClick={ e => { hitHandler() } }
+        onPointerDown={e => { setIsDraggingBall(true) }}
+        onPointerUp={e => { setIsDraggingBall(false) }}
       >
         <sphereGeometry attach="geometry" args={[size, 16, 16]}/>
         <meshPhongMaterial attach="material" color="white"/>
