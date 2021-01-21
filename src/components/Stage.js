@@ -6,29 +6,21 @@ import Floor from './Floor'
 import DefaultCamera from './Camera'
 import Ball from './Ball'
 import Loading from './Loading'
+import useBallsStore from '../store/ballsStore'
+import {Html} from 'drei'
 // import { useDrag } from 'react-use-gesture'
-// import create from 'zustand';
 
 
 export default function Stage() {
 
   const ambientColor = '#d67a0c';
 
+  const {isActive} = useBallsStore();
+
   // const bind = useDrag(() => dragging, {
   //   threshold: 150,
   //   useTouch: true
   // });
-  //
-  // const useStore = create(set => ({
-  //   isActive: false,
-  //   setIsActive: () => set(state => ({ isActive: state.isActive })),
-  // }));
-  //
-  // const {
-  //   isActive,
-  //   setIsActive
-  // } = useStore();
-  //
   //
   // const dragging = () => {
   //   console.log('dragging');
@@ -47,6 +39,11 @@ export default function Stage() {
                 <Floor position={[0,0,0]}/>
             </Physics>
             <DefaultCamera position={[0, 2, 10]}/>
+            {isActive &&
+              <Html center={true}>
+                <h1>Attivo</h1>
+              </Html>
+            }
         </Canvas>
       </Suspense>
     </div>

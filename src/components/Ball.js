@@ -1,15 +1,22 @@
 import {useEffect, useState} from 'react';
 import {useSphere} from 'use-cannon';
+import useBallsStore from '../store/ballsStore'
 
 const Ball = ({size, position}) => {
   const [hovered, setHovered] = useState(false);
 
+  const {isActive, setIsActive} = useBallsStore();
+
   const handlePointerDown = (e) => {
     console.log("down");
+    setIsActive(true);
+    console.log(isActive);
   };
 
   const handlePointerUp = (e) => {
     console.log("up");
+    setIsActive(false);
+    console.log(isActive);
   };
 
   const [sphereRef, api] = useSphere(() => ({
