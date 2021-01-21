@@ -5,19 +5,17 @@ import useBallsStore from '../store/ballsStore'
 const Ball = ({size, position}) => {
   const [hovered, setHovered] = useState(false);
 
-  const {isActive, setIsActive} = useBallsStore();
+  const {setIsDraggingBall} = useBallsStore();
 
   const handlePointerDown = (e) => {
-    console.log("down");
-    setIsActive(true);
-    console.log(isActive);
+    setIsDraggingBall(true);
   };
-
-  const handlePointerUp = (e) => {
-    console.log("up");
-    setIsActive(false);
-    console.log(isActive);
-  };
+  //
+  // const handlePointerUp = (e) => {
+  //   console.log("up");
+  //   setIsDraggingBall(false);
+  //   console.log(isDraggingBall);
+  // };
 
   const [sphereRef, api] = useSphere(() => ({
     mass: 1,
@@ -43,7 +41,7 @@ const Ball = ({size, position}) => {
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
         onPointerDown={e => { handlePointerDown(e) }}
-        onPointerUp={e => { handlePointerUp(e) }}
+        // onPointerUp={e => { handlePointerUp(e) }}
         onClick={ e => { hitHandler() } }
       >
         <sphereGeometry attach="geometry" args={[size, 16, 16]}/>

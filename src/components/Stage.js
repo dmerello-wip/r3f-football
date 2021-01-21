@@ -8,26 +8,31 @@ import Ball from './Ball'
 import Loading from './Loading'
 import useBallsStore from '../store/ballsStore'
 import {Html} from 'drei'
-// import { useDrag } from 'react-use-gesture'
+import { useDrag } from 'react-use-gesture'
 
 
 export default function Stage() {
 
   const ambientColor = '#d67a0c';
 
-  const {isActive} = useBallsStore();
+  const {isDraggingBall, setIsDraggingBall} = useBallsStore();
 
-  // const bind = useDrag(() => dragging, {
-  //   threshold: 150,
-  //   useTouch: true
-  // });
-  //
-  // const dragging = () => {
-  //   console.log('dragging');
-  // };
+  const bind = useDrag((state) => {
+    if(isDraggingBall) {
+      console.log(`state.velocity: ${state.velocity}`);
+      console.log(`state.dragging: ${state.dragging}`);
+      if(!state.dragging) {
+        console.log('end dragging');
+        setIsDraggingBall(false);
+      }
+    }
+  }, {
+    threshold: 150,
+    useTouch: true
+  });
 
   return (
-    <div className="stage">
+    <div className="stage" {...bind()}>
       <Suspense fallback={<Loading/>}>
         <Canvas shadowMap>
           <ambientLight intensity={0.3}/>
@@ -39,7 +44,7 @@ export default function Stage() {
                 <Floor position={[0,0,0]}/>
             </Physics>
             <DefaultCamera position={[0, 2, 10]}/>
-            {isActive &&
+            {isDraggingBall &&
               <Html center={true}>
                 <h1>Attivo</h1>
               </Html>

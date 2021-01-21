@@ -1,8 +1,8 @@
 import create from 'zustand';
 
 const useBallsStore = create(set => ({
-  isActive: false,
-  setIsActive: (bool) => set({ isActive: bool })
+  isDraggingBall: false,
+  setIsDraggingBall: (bool) => set({ isDraggingBall: bool })
 }));
 
 export default useBallsStore;
