@@ -1,11 +1,9 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useEffect} from 'react'
 // import {PerspectiveCamera, OrbitControls} from 'drei'
 import {PerspectiveCamera} from 'drei'
 import {TweenMax, Power2} from 'gsap';
 
-export default function DefaultCamera({position}) {
-
-  const ref = useRef();
+const camera = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     if (ref.current) {
@@ -26,19 +24,20 @@ export default function DefaultCamera({position}) {
         }
       });
     }
-  }, []);
+  }, [ref]);
 
   return (
     <>
-    {/*<OrbitControls/>*/}
-    <PerspectiveCamera
-      ref={ref}
-      makeDefault
-      position={position}
-      rotation={[0, 0, 0]}
-      far={50}
-    />
+      {/*<OrbitControls/>*/}
+      <PerspectiveCamera
+        ref={ref}
+        makeDefault
+        position={props.position}
+        rotation={[0, 0, 0]}
+        far={50}
+      />
     </>
   )
-}
+});
 
+export default camera;

@@ -37,7 +37,16 @@ export default function PicModel(props) {
 
 
 
-  const [ref, api] = useBox(() => ({ mass: 1, args:[1,3.85,1], ...props }));
+  const [ref, api] = useBox(() => ({
+    mass: 5,
+    args:[1,3.85,1],
+    onCollide: e => {
+      if(e.body.geometry.type === 'SphereGeometry') {
+        hitHandler();
+      }
+    },
+    ...props
+  }));
   const HandRightRef = useRef();
   const HandLeftRef = useRef();
   const HeadRef = useRef();
