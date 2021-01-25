@@ -35,8 +35,6 @@ export default function PicModel(props) {
     materials['Material #2'].color.set(colors.hairs);
   }, [dressColor, colors, materials]);
 
-
-
   const [ref, api] = useBox(() => ({
     mass: 5,
     args:[1,3.85,1],

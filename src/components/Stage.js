@@ -16,8 +16,8 @@ export default function Stage() {
   const cameraRef = useRef();
 
   const ambientColor = '#d67a0c';
-  const velocityFactor = 5;
-  const crossFactor = 20;
+  const velocityFactor = 8;
+  const crossFactor = 26;
   const ballSize = 0.2;
   const ballZaxis = 6;
 
