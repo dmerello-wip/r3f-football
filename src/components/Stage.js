@@ -1,8 +1,9 @@
 import React, {Suspense, useRef} from 'react'
 import {Canvas} from 'react-three-fiber'
 import {Physics} from 'use-cannon'
-import PicModel from './PicModel'
 import Floor from './Floor'
+import Glove from './Glove'
+import Web from './Web'
 import DefaultCamera from './Camera'
 import Ball from './Ball'
 import Loading from './Loading'
@@ -55,7 +56,9 @@ export default function Stage() {
           <fog attach="fog" args={[ambientColor, 0, 50]}/>
           <spotLight intensity={0.8} position={[30, 30, 70]} angle={0.1} penumbra={1} castShadow/>
           <Physics>
-            <PicModel position={[0, 4, 0]}/>
+            <Web position={[0, 0, -4]} />
+            <Glove position={[1.5, 1, -4]} size={2} side="right"/>
+            <Glove position={[-1.5, 1, -4]} size={2} side="left"/>
             <Ball position={[0, 2, ballZaxis]} size={ballSize} force={force} firstTouchAction={findClickPoint}/>
             <Floor position={[0, 0, 0]}/>
           </Physics>

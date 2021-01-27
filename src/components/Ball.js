@@ -6,7 +6,6 @@ const Ball = ({size, position, force, firstTouchAction}) => {
   const [hovered, setHovered] = useState(false);
 
   const storeApi = useBallsStore(s => s.api);
-  const isDraggingBall = useBallsStore(s => s.isDraggingBall);
 
   const [sphereRef, api] = useSphere(() => ({
     mass: 1,
@@ -23,18 +22,6 @@ const Ball = ({size, position, force, firstTouchAction}) => {
 
   }, [hovered, force, api.velocity]);
 
-  // useEffect(()=>{
-  //   if(!isDraggingBall) {
-  //     setTimeout(()=>{
-  //       api.position.set(0,4,6);
-  //       storeApi.setForce({
-  //         x: 0,
-  //         y: 0,
-  //         z: 0,
-  //       });
-  //     },3000);
-  //   }
-  // }, [isDraggingBall]);
 
   return (
     <group position={[0, 0, 0]}>
