@@ -14,14 +14,12 @@ const Ball = ({size, position, force, firstTouchAction}) => {
   }));
 
   useEffect(()=>{
-
-    let cursor =  (hovered) ? 'pointer' : 'inherit';
-    document.body.style.cursor = cursor;
-
     api.velocity.set(force.x, force.y, force.z);
+  }, [force, api.velocity]);
 
-  }, [hovered, force, api.velocity]);
-
+  useEffect(()=>{
+    document.body.style.cursor = (hovered) ? 'pointer' : 'inherit';
+  }, [hovered]);
 
   return (
     <group position={[0, 0, 0]}>
@@ -41,7 +39,7 @@ const Ball = ({size, position, force, firstTouchAction}) => {
       </mesh>
     </group>
   );
-}
+};
 
 export default Ball;
 

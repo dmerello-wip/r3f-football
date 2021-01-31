@@ -3,7 +3,7 @@ import {Canvas} from 'react-three-fiber'
 import {Physics} from 'use-cannon'
 import Floor from './Floor'
 import Glove from './Glove'
-import Web from './Web'
+import Goal from './Goal'
 import DefaultCamera from './Camera'
 import Ball from './Ball'
 import Loading from './Loading'
@@ -56,9 +56,9 @@ export default function Stage() {
           <fog attach="fog" args={[ambientColor, 0, 50]}/>
           <spotLight intensity={0.8} position={[30, 30, 70]} angle={0.1} penumbra={1} castShadow/>
           <Physics>
-            <Web position={[0, 0, -4]} />
-            <Glove position={[1.5, 1, -4]} size={2} side="right"/>
-            <Glove position={[-1.5, 1, -4]} size={2} side="left"/>
+            <Goal position={[0, 0, -6]} />
+            <Glove position={[1.5, 2, -2]} size={1} side="right"/>
+            <Glove position={[-1.5, 2, -2]} size={1} side="left"/>
             <Ball position={[0, 2, ballZaxis]} size={ballSize} force={force} firstTouchAction={findClickPoint}/>
             <Floor position={[0, 0, 0]}/>
           </Physics>

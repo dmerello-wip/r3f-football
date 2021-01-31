@@ -4,16 +4,18 @@ import { useLoader } from 'react-three-fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 
 
-export default function Glove(props) {
-  const [ref] = usePlane(() => ({ rotation: [0, 0, 0], ...props }));
+export default function Glove({position, size, side}) {
+  // const [ref] = usePlane(() => ({
+  //   mass: 1,
+  //   position: position
+  // }));
 
-  const txtr = useLoader(TextureLoader, (props.side === 'right') ? '/3d/test/hand-right@2x.png' : '/3d/test/hand-left@2x.png');
-
+  const txtr = useLoader(TextureLoader, (side === 'right') ? '/3d/test/hand-right@2x.png' : '/3d/test/hand-left@2x.png');
 
   return (
-    <mesh ref={ref} castShadow>
-      <planeBufferGeometry attach="geometry" args={[1, 1]} />
-      <meshStandardMaterial map={txtr} attach="material" transparent={true} />
+    <mesh  castShadow args={[size, size]} position={position}>
+      <planeBufferGeometry attach="geometry" />
+      <meshStandardMaterial map={txtr} attach="material" transparent={true}  />
     </mesh>
   )
 }
