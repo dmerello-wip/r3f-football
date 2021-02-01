@@ -4,15 +4,12 @@ import { useBox } from 'use-cannon'
 import { useLoader } from 'react-three-fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 
-export default function Goal({position}) {
-  const goalHeight = 4;
-  const goalWidth = 10;
+export default function Goal({position, goalHeight, goalWidth}) {
 
-
-  const [goalRef] = useBox(() => ({
-    position: [position[0], position[1] + goalHeight/2, position[2]],
-    mass: 1,
-    args: [goalWidth, goalHeight]
+ const [goalRef] = useBox(() => ({
+    position: position,
+    mass: 10,
+    args: [goalWidth, goalHeight, goalHeight]
   }));
 
   /* --------- TEXTURES SET ------------ */
@@ -35,7 +32,7 @@ export default function Goal({position}) {
 
 
   const Side = (side)=>{
-    let sidePosition = (side==='left') ? [goalWidth/2 , 0 , goalHeight/2] : [ -goalWidth/2 , 0 , goalHeight/2];
+    let sidePosition = (side==='left') ? [goalWidth/2 , 0 , 0] : [ -goalWidth/2 , 0 , 0];
     return (
       <mesh castShadow position={sidePosition} rotation={[0, Math.PI / 2, 0]}>
         <planeBufferGeometry attach="geometry" args={[goalHeight, goalHeight]} />
@@ -45,7 +42,7 @@ export default function Goal({position}) {
   };
   const Top = ()=>{
     return (
-      <mesh castShadow position={[ 0, goalHeight/2, goalHeight/2 ]}  rotation={[Math.PI / 2, 0, 0]}>
+      <mesh castShadow position={[ 0, goalHeight/2, 0 ]}  rotation={[Math.PI / 2, 0, 0]}>
         <planeBufferGeometry attach="geometry" args={[goalWidth, goalHeight]}  />
         <meshStandardMaterial map={txtr} attach="material" transparent={true}  side={THREE.DoubleSide}/>
       </mesh>
@@ -54,7 +51,7 @@ export default function Goal({position}) {
 
   const Back = ()=>{
     return (
-      <mesh castShadow position={[ 0, 0, 0]}>
+      <mesh castShadow position={[ 0, 0, -goalHeight/2]}>
         <planeBufferGeometry attach="geometry" args={[goalWidth, goalHeight]}  />
         <meshStandardMaterial map={txtr} attach="material" transparent={true}  side={THREE.DoubleSide}/>
       </mesh>
