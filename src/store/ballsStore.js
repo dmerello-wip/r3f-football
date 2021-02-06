@@ -13,7 +13,11 @@ const useBallsStore = create(set => ({
     setClickPoint: (obj) => set({ clickPoint: {...obj} }),
     setBallPositionOnGoal: (ballPosition) => {
         // set gloves
-      set({ gloveLeftPositionOnGoal: ballPosition});
+      if (ballPosition.x <= 0) {
+        set({ gloveLeftPositionOnGoal: ballPosition});
+      } else {
+        set({ gloveRightPositionOnGoal: ballPosition});
+      }
     }
   }
 }));

@@ -17,14 +17,13 @@ export default function Goal({position, goalHeight, goalWidth}) {
     onCollide: (e)=>{
         if (e.body.name === "soccerball") {
           storeApi.setBallPositionOnGoal(e.body.position);
-          console.log(e.body.position);
         }
     }
   }));
 
   /* --------- TEXTURES SET ------------ */
 
-  //TODO: importing 2 identical images, fined a better way:
+  //TODO: importing 2 identical images, find a better way:
   const txtr  = useLoader(TextureLoader, '/3d/test/web@2x.png');
   const txtrSide  = useLoader(TextureLoader, '/3d/test/webSide@2x.png');
   const setTextures = ()=>{
