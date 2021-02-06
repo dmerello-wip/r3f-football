@@ -40,11 +40,9 @@ export default function Stage() {
   // FIND POINT OF CLICK ON BALL ELEMENT
   const findClickPoint = (event) => {
     // find 3d world point from camera, mouse event and Z displacement of clicked element:
-    let point = clickPointInWorld(event, cameraRef.current, config.ballInitialPosition[2]);
+    let point = clickPointInWorld(event, cameraRef.current, config.ballInitialPosition.z);
     storeApi.setClickPoint(point);
   };
-
-
 
   return (
     <div className="stage" {...bind()}>

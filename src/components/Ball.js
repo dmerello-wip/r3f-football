@@ -9,7 +9,7 @@ const Ball = ({size, position, force, firstTouchAction}) => {
 
   const [sphereRef, api] = useSphere(() => ({
     mass: 1,
-    position: position,
+    position: [position.x, position.y, position.z],
     args: size
   }));
 
@@ -22,7 +22,6 @@ const Ball = ({size, position, force, firstTouchAction}) => {
   }, [hovered]);
 
   return (
-    <group position={[0, 0, 0]}>
       <mesh
         ref={sphereRef}
         castShadow
@@ -38,7 +37,6 @@ const Ball = ({size, position, force, firstTouchAction}) => {
         <sphereGeometry attach="geometry" args={[size, 16, 16]}/>
         <meshPhongMaterial attach="material" color="white"/>
       </mesh>
-    </group>
   );
 };
 
