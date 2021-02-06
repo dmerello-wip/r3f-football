@@ -33,6 +33,7 @@ const Ball = ({size, position, force, firstTouchAction}) => {
           storeApi.setIsDraggingBall(true)
         }}
         onPointerUp={e => { storeApi.setIsDraggingBall(false) }}
+        name="soccerball"
       >
         <sphereGeometry attach="geometry" args={[size, 16, 16]}/>
         <meshPhongMaterial attach="material" color="white"/>

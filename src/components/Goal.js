@@ -3,13 +3,23 @@ import * as THREE from 'three'
 import { useBox } from 'use-cannon'
 import { useLoader } from 'react-three-fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import useBallsStore from '../store/ballsStore'
 
 export default function Goal({position, goalHeight, goalWidth}) {
+
+
+ const {api: storeApi} = useBallsStore();
 
  const [goalRef] = useBox(() => ({
     position: position,
     mass: 10,
-    args: [goalWidth, goalHeight, goalHeight]
+    args: [goalWidth, goalHeight, goalHeight],
+    onCollide: (e)=>{
+        if (e.body.name === "soccerball") {
+          storeApi.setBallPositionOnGoal(e.body.position);
+          console.log(e.body.position);
+        }
+    }
   }));
 
   /* --------- TEXTURES SET ------------ */

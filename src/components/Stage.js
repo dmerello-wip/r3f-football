@@ -22,7 +22,7 @@ export default function Stage() {
   const ballSize = 0.2;
   const ballZaxis = 12;
 
-  const {isDraggingBall, force, clickPoint, api: storeApi} = useBallsStore();
+  const {isDraggingBall, force, clickPoint, gloveLeftPositionOnGoal, gloveRightPositionOnGoal, api: storeApi} = useBallsStore();
 
   const bind = useDrag((state) => {
     // end dragging, and starting from a ball:
@@ -57,8 +57,8 @@ export default function Stage() {
           <spotLight intensity={0.8} position={[30, 30, 70]} angle={0.1} penumbra={1} castShadow/>
           <Physics>
             <Goal position={[0, 2, 0]} goalHeight={4} goalWidth={10} />
-            <Glove position={[1.5, 2, -2]} size={1} side="right"/>
-            <Glove position={[-1.5, 2, -2]} size={1} side="left"/>
+            <Glove position={gloveLeftPositionOnGoal} size={1} side="left"/>
+            <Glove position={gloveRightPositionOnGoal} size={1} side="right"/>
             <Ball position={[0, 2, ballZaxis]} size={ballSize} force={force} firstTouchAction={findClickPoint}/>
             <Floor position={[0, 0, 0]}/>
           </Physics>
