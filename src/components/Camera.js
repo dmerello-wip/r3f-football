@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {PerspectiveCamera, OrbitControls} from 'drei'
+import {PerspectiveCamera} from 'drei'
 import {TweenMax, Power2} from 'gsap';
 
 const camera = React.forwardRef((props, ref) => {

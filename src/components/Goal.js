@@ -12,7 +12,7 @@ export default function Goal({position, goalHeight, goalWidth}) {
 
  const [goalRef] = useBox(() => ({
     position: position,
-    mass: 10,
+    mass: 30,
     args: [goalWidth, goalHeight, goalHeight],
     onCollide: (e)=>{
         if (e.body.name === "soccerball") {
